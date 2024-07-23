@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="
+    https://cdn.jsdelivr.net/npm/vue@3.4.33/dist/vue.global.min.js
+    "></script>
+    <script src="
+https://cdn.jsdelivr.net/npm/@monaco-editor/loader@1.4.0/lib/umd/monaco-loader.min.js
+"></script>
+    <!-- <script src="
+https://cdn.jsdelivr.net/npm/monaco-editor@0.50.0/min/vs/editor/editor.main.min.js
+"></script> -->
+    <link
+      href="
+https://cdn.jsdelivr.net/npm/monaco-editor@0.50.0/min/vs/editor/editor.main.min.css
+"
+      rel="stylesheet"
+    />
+    <script src="../../dist/umd/index.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <Editor v-model:value="code" language="sql" />
+    </div>
+    <script>
+      const app = Vue.createApp({
+        data() {
+          return {
+            code: "selet  * from app_tlog",
+          };
+        }
+      });
+      app.use(vueMonaco.default, {
+        paths: {
+          vs: "https://cdn.jsdelivr.net/npm/monaco-editor@0.50.0/min/vs",
+        },
+      });
+      app.mount("#app");
+    </script>
+  </body>
+</html>

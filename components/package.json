@@ -1,0 +1,11 @@
+{
+  "name": "monaco-components",
+  "version": "1.0.0",
+  "description": "monaco-editor相关组件",
+  "main": "index.ts",
+  "scripts": {
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
