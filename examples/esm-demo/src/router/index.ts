@@ -1,11 +1,11 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router';
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
-      redirect: '/editor',
+      redirect: '/editor'
     },
     {
       path: '/editor',
@@ -24,6 +24,6 @@ const router = createRouter({
       component: () => import('../views/DiffView.vue')
     }
   ]
-})
+});
 
-export default router
+export default router;

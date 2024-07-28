@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import monaco from "../monaco.ts";
-import { Diff, loader } from "monaco-components";
+import monaco from '../monaco.ts';
+import { Diff, loader } from 'monaco-components';
 loader.config({
   monaco
 });
@@ -440,13 +440,8 @@ const modified = `/*
 
 })(this);
 `;
-
 </script>
 
 <template>
-  <Diff
-    :original="modified"
-    :modified="originalContent"
-    language="javascript"
-  />
+  <Diff :original="modified" :modified="originalContent" language="javascript" />
 </template>

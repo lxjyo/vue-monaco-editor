@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { ref, shallowRef, toRefs, watch, onMounted, onUnmounted, nextTick } from "vue";
-import type { editor } from "monaco-editor";
-import useMonaco from "../useMonaco";
-import type { MonacoEditor, Nullable } from "../types";
+import { ref, shallowRef, toRefs, watch, onUnmounted, nextTick } from 'vue';
+import type { editor } from 'monaco-editor';
+import useMonaco from '../useMonaco';
+import type { MonacoEditor, Nullable } from '../types';
 defineOptions({
-  name: "Diff",
+  name: 'Diff'
 });
 
 interface IDiffProps {
@@ -20,8 +20,8 @@ interface IDiffProps {
 }
 
 interface IDiffEmits {
-  (e: "update:original", value: string): void;
-  (e: "mount", diff: editor.IStandaloneDiffEditor, monaco: MonacoEditor): void;
+  (e: 'update:original', value: string): void;
+  (e: 'mount', diff: editor.IStandaloneDiffEditor, monaco: MonacoEditor): void;
 }
 
 const defaultOptions: editor.IStandaloneDiffEditorConstructionOptions = {
@@ -29,14 +29,14 @@ const defaultOptions: editor.IStandaloneDiffEditorConstructionOptions = {
   enableSplitViewResizing: true, // 允许调整大小
   automaticLayout: true, // 自动调整布局
   scrollBeyondLastLine: false, // 滚动
-  fontSize: 14,
+  fontSize: 14
 };
 const props = withDefaults(defineProps<IDiffProps>(), {
-  language: "json",
-  height: "500px",
+  language: 'json',
+  height: '500px',
   showTitle: true,
   inline: false,
-  options: () => ({}),
+  options: () => ({})
 });
 const emits = defineEmits<IDiffEmits>();
 const { options, original, modified, language } = toRefs(props);
@@ -55,13 +55,13 @@ const addFullscreenAction = () => {
     const modifiedEditor = monacoDiffInstance.getModifiedEditor();
     // 添加全屏功能
     const fullscreenAction = {
-      id: "Fullscreen",
-      label: "Toggle Fullscreen",
+      id: 'Fullscreen',
+      label: 'Toggle Fullscreen',
       contextMenuOrder: 2,
-      contextMenuGroupId: "1_modification",
+      contextMenuGroupId: '1_modification',
       run: () => {
         fullscreen.value = !fullscreen.value;
-      },
+      }
     };
     originEditor.addAction(fullscreenAction);
     modifiedEditor.addAction(fullscreenAction);
@@ -77,13 +77,13 @@ const addToggleModeAction = () => {
     const modifiedEditor = monacoDiffInstance.getModifiedEditor();
     // 添加切换模式功能
     const toggleModeAction = {
-      id: "inlineMode",
-      label: "Toggle Mode",
+      id: 'inlineMode',
+      label: 'Toggle Mode',
       contextMenuOrder: 2,
-      contextMenuGroupId: "1_modification",
+      contextMenuGroupId: '1_modification',
       run: () => {
         inlineMode.value = !inlineMode.value;
-      },
+      }
     };
     originEditor.addAction(toggleModeAction);
     modifiedEditor.addAction(toggleModeAction);
@@ -92,17 +92,11 @@ const addToggleModeAction = () => {
 // 设置内容
 const setModel = (original: string, modified: string) => {
   if (monacoRef.value) {
-    const originModel = monacoRef.value.editor.createModel(
-      original,
-      language.value
-    );
-    const modifiedModel = monacoRef.value.editor.createModel(
-      modified,
-      language.value
-    );
+    const originModel = monacoRef.value.editor.createModel(original, language.value);
+    const modifiedModel = monacoRef.value.editor.createModel(modified, language.value);
     diffInstance.value?.setModel({
       original: originModel,
-      modified: modifiedModel,
+      modified: modifiedModel
     });
   }
 };
@@ -110,8 +104,8 @@ const setModel = (original: string, modified: string) => {
 // 获取内容
 const getModelValue = (): string[] => {
   const monacoDiffModel = diffInstance.value?.getModel();
-  const original = monacoDiffModel?.original.getValue() || "";
-  const modified = monacoDiffModel?.modified?.getValue() || "";
+  const original = monacoDiffModel?.original.getValue() || '';
+  const modified = monacoDiffModel?.modified?.getValue() || '';
   return [original, modified] as const;
 };
 
@@ -122,21 +116,18 @@ const addChangeEvent = () => {
   originEditor?.onDidChangeModelContent(() => {
     // 获取编辑器中的语句
     const value = originEditor.getValue();
-    emits("update:original", value);
+    emits('update:original', value);
   });
 };
 
 // 初始化实例
 const initDiffInstance = () => {
   if (diffRef.value && monacoRef.value) {
-    diffInstance.value = monacoRef.value.editor.createDiffEditor(
-      diffRef.value,
-      {
-        ...defaultOptions,
-        ...options.value,
-        renderSideBySide: !inlineMode.value,
-      }
-    );
+    diffInstance.value = monacoRef.value.editor.createDiffEditor(diffRef.value, {
+      ...defaultOptions,
+      ...options.value,
+      renderSideBySide: !inlineMode.value
+    });
     addFullscreenAction();
     addToggleModeAction();
     setModel(original.value, modified.value);
@@ -144,7 +135,7 @@ const initDiffInstance = () => {
     if (options.value.originalEditable) {
       addChangeEvent();
     }
-    emits("mount", diffInstance.value, monacoRef.value);
+    emits('mount', diffInstance.value, monacoRef.value);
   }
 };
 // 监听内容的变化
@@ -155,11 +146,15 @@ watch([original, modified], ([newOriginal, newModified]) => {
   }
 });
 
-watch(monacoRef, () => {
-  nextTick(initDiffInstance)
-}, {
-  immediate: true,
-});
+watch(
+  monacoRef,
+  () => {
+    nextTick(initDiffInstance);
+  },
+  {
+    immediate: true
+  }
+);
 onUnmounted(() => {
   if (diffInstance.value) {
     diffInstance.value.dispose();

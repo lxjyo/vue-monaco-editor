@@ -1,81 +1,104 @@
-declare const _default: import("vue").DefineComponent<{
+declare const _default: import('vue').DefineComponent<
+  {
     original: {
-        type: StringConstructor;
-        required: true;
+      type: StringConstructor;
+      required: true;
     };
     modified: {
-        type: StringConstructor;
-        required: true;
+      type: StringConstructor;
+      required: true;
     };
     language: {
+      type: StringConstructor;
+      required: false;
+      default: string;
+    };
+    height: {
+      type: (StringConstructor | NumberConstructor)[];
+      required: false;
+      default: string;
+    };
+    showTitle: {
+      type: BooleanConstructor;
+      required: false;
+      default: boolean;
+    };
+    inline: {
+      type: BooleanConstructor;
+      required: false;
+      default: boolean;
+    };
+    options: {
+      type: null;
+      required: false;
+      default: () => {};
+    };
+  },
+  (
+    _ctx: any,
+    _cache: any
+  ) => import('vue').VNode<
+    import('vue').RendererNode,
+    import('vue').RendererElement,
+    {
+      [key: string]: any;
+    }
+  >,
+  unknown,
+  {},
+  {},
+  import('vue').ComponentOptionsMixin,
+  import('vue').ComponentOptionsMixin,
+  ('update:original' | 'mount')[],
+  'update:original' | 'mount',
+  import('vue').PublicProps,
+  Readonly<
+    import('vue').ExtractPropTypes<{
+      original: {
+        type: StringConstructor;
+        required: true;
+      };
+      modified: {
+        type: StringConstructor;
+        required: true;
+      };
+      language: {
         type: StringConstructor;
         required: false;
         default: string;
-    };
-    height: {
+      };
+      height: {
         type: (StringConstructor | NumberConstructor)[];
         required: false;
         default: string;
-    };
-    showTitle: {
+      };
+      showTitle: {
         type: BooleanConstructor;
         required: false;
         default: boolean;
-    };
-    inline: {
+      };
+      inline: {
         type: BooleanConstructor;
         required: false;
         default: boolean;
-    };
-    options: {
+      };
+      options: {
         type: null;
         required: false;
         default: () => {};
-    };
-}, (_ctx: any, _cache: any) => import("vue").VNode<import("vue").RendererNode, import("vue").RendererElement, {
-    [key: string]: any;
-}>, unknown, {}, {}, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, ("update:original" | "mount")[], "update:original" | "mount", import("vue").PublicProps, Readonly<import("vue").ExtractPropTypes<{
-    original: {
-        type: StringConstructor;
-        required: true;
-    };
-    modified: {
-        type: StringConstructor;
-        required: true;
-    };
-    language: {
-        type: StringConstructor;
-        required: false;
-        default: string;
-    };
-    height: {
-        type: (StringConstructor | NumberConstructor)[];
-        required: false;
-        default: string;
-    };
-    showTitle: {
-        type: BooleanConstructor;
-        required: false;
-        default: boolean;
-    };
-    inline: {
-        type: BooleanConstructor;
-        required: false;
-        default: boolean;
-    };
-    options: {
-        type: null;
-        required: false;
-        default: () => {};
-    };
-}>> & {
-    "onUpdate:original"?: ((...args: any[]) => any) | undefined;
+      };
+    }>
+  > & {
+    'onUpdate:original'?: ((...args: any[]) => any) | undefined;
     onMount?: ((...args: any[]) => any) | undefined;
-}, {
+  },
+  {
     language: string;
     height: string | number;
     showTitle: boolean;
     inline: boolean;
     options: any;
-}, {}>;
+  },
+  {}
+>;
 export default _default;

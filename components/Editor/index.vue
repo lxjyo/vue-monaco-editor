@@ -1,16 +1,8 @@
 <script setup lang="ts">
-import type { editor } from "monaco-editor";
-import useMonaco from "../useMonaco";
-import {
-  onMounted,
-  ref,
-  toRefs,
-  watch,
-  shallowRef,
-  onUnmounted,
-  nextTick,
-} from "vue";
-import type { Nullable, MonacoEditor } from "../types";
+import type { editor } from 'monaco-editor';
+import useMonaco from '../useMonaco';
+import { ref, toRefs, watch, shallowRef, onUnmounted, nextTick } from 'vue';
+import type { Nullable, MonacoEditor } from '../types';
 interface IEditorProps {
   value: string;
   language?: string;
@@ -21,39 +13,35 @@ interface IEditorProps {
 }
 
 interface IEditorEmits {
-  (e: "update:value", value: string): void;
-  (e: "change", value: string): void;
-  (
-    e: "mount",
-    editor: editor.IStandaloneCodeEditor,
-    monaco: MonacoEditor
-  ): void;
+  (e: 'update:value', value: string): void;
+  (e: 'change', value: string): void;
+  (e: 'mount', editor: editor.IStandaloneCodeEditor, monaco: MonacoEditor): void;
 }
 
 defineOptions({
-  name: "Editor",
+  name: 'Editor'
 });
 
 // 默认options
 const defaultOptions: editor.IStandaloneEditorConstructionOptions = {
-  theme: "light",
-  foldingStrategy: "auto", // 代码可分小段折叠
+  theme: 'light',
+  foldingStrategy: 'auto', // 代码可分小段折叠
   formatOnPaste: true, // 格式化
   formatOnType: true,
   automaticLayout: true, // 自动调整布局
   scrollBeyondLastLine: false, // 滚动
-  acceptSuggestionOnEnter: "on",
+  acceptSuggestionOnEnter: 'on',
   acceptSuggestionOnCommitCharacter: true,
   fontSize: 14,
   minimap: {
-    enabled: false, // 不要小地图
-  },
+    enabled: false // 不要小地图
+  }
 };
 const props = withDefaults(defineProps<IEditorProps>(), {
-  height: "500px",
-  language: "json",
+  height: '500px',
+  language: 'json',
   readonly: false,
-  options: () => ({}),
+  options: () => ({})
 });
 
 const { monacoRef, unload } = useMonaco();
@@ -67,22 +55,22 @@ const showPlaceholder = ref<boolean>(!!props.placeholder && !props.value);
 // 添加全屏功能
 const addFullscreenAction = () => {
   editorInstance.value?.addAction({
-    id: "Fullscreen",
-    label: "Toggle Fullscreen",
+    id: 'Fullscreen',
+    label: 'Toggle Fullscreen',
     contextMenuOrder: 2,
-    contextMenuGroupId: "1_modification",
+    contextMenuGroupId: '1_modification',
     run: () => {
       fullscreen.value = !fullscreen.value;
-    },
+    }
   });
 };
 // 添加修改内容事件
 const addChangeEvent = () => {
-  editorInstance.value?.onDidChangeModelContent((args) => {
+  editorInstance.value?.onDidChangeModelContent(() => {
     // 获取编辑器中的语句
     const value = getValue();
-    emits("update:value", value);
-    emits("change", value);
+    emits('update:value', value);
+    emits('change', value);
     if (value) {
       showPlaceholder.value = false;
     } else {
@@ -93,18 +81,18 @@ const addChangeEvent = () => {
 
 // 初始化编辑器实例
 const initEditorInstance = () => {
-  console.log(editorRef.value, monacoRef.value)
+  console.log(editorRef.value, monacoRef.value);
   if (editorRef.value && monacoRef.value) {
     editorInstance.value = monacoRef.value.editor.create(editorRef.value, {
       ...defaultOptions,
       ...options.value,
       value: value.value,
       language: language.value,
-      readOnly: readonly.value, // 只读
+      readOnly: readonly.value // 只读
     });
     addFullscreenAction();
     addChangeEvent();
-    emits("mount", editorInstance.value, monacoRef.value);
+    emits('mount', editorInstance.value, monacoRef.value);
   }
 };
 
@@ -127,7 +115,7 @@ const setModelLanguage = (language: string) => {
 };
 
 // 监听外部value的变化
-watch(value, (newValue) => {
+watch(value, newValue => {
   if (newValue !== getValue()) {
     setValue(newValue);
   }
@@ -136,17 +124,21 @@ watch(value, (newValue) => {
 watch(language, setModelLanguage);
 
 // 监听外部readonly的变化
-watch(readonly, (newValue) => {
+watch(readonly, newValue => {
   editorInstance.value?.updateOptions({
-    readOnly: newValue,
+    readOnly: newValue
   });
 });
 
-watch(monacoRef, () => {
-  nextTick(initEditorInstance)
-}, {
-  immediate: true,
-});
+watch(
+  monacoRef,
+  () => {
+    nextTick(initEditorInstance);
+  },
+  {
+    immediate: true
+  }
+);
 
 onUnmounted(() => {
   if (editorInstance.value) {
@@ -159,10 +151,7 @@ onUnmounted(() => {
 <template>
   <div :class="['editor-container', { fullscreen }]">
     <div class="placeholder" v-show="showPlaceholder">{{ placeholder }}</div>
-    <div
-      ref="editorRef"
-      :style="{ height: fullscreen ? '100%' : height }"
-    ></div>
+    <div ref="editorRef" :style="{ height: fullscreen ? '100%' : height }"></div>
   </div>
 </template>
 <style lang="less" scoped>

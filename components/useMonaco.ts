@@ -1,5 +1,5 @@
-import loader from "@monaco-editor/loader";
-import { onMounted, shallowRef } from "vue";
+import loader from '@monaco-editor/loader';
+import { onMounted, shallowRef } from 'vue';
 import type { Nullable, MonacoEditor } from './types/index';
 function useMonaco() {
   const monacoRef = shallowRef<Nullable<MonacoEditor>>(loader.__getMonacoInstance());
@@ -9,12 +9,12 @@ function useMonaco() {
     if (!monacoRef.value) {
       cancelable = loader.init();
       cancelable
-        .then((monaco) => {
+        .then(monaco => {
           monacoRef.value = monaco;
         })
-        .catch((error) => {
-          if (error?.type !== "cancelation") {
-            console.error("Monaco initialization error:", error);
+        .catch(error => {
+          if (error?.type !== 'cancelation') {
+            console.error('Monaco initialization error:', error);
           }
         });
     }
@@ -24,7 +24,7 @@ function useMonaco() {
 
   return {
     monacoRef,
-    unload,
+    unload
   };
 }
 
