@@ -3,14 +3,12 @@
   "include": [
     "components/**/*.vue",
     "components/**/*.ts",
-    "examples/**/*.vue",
-    "examples/**/*.ts",
     "shims-vue.d.ts"
   ],
   "exclude": ["components/**/*.test.ts"],
   "compilerOptions": {
     "declaration": true,
-    "declarationDir": "./dist/types",
+    "declarationDir": "./dist",
     "composite": true,
     "baseUrl": ".",
     "ignoreDeprecations": "5.0",
