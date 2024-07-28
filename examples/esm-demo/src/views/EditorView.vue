@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import { loader, Editor } from 'monaco-components';
+// import { loader, Editor } from 'monaco-components';
 import { ref } from 'vue';
-import monaco from '../monaco';
-import registerCompletion from './registerCompletion';
-loader.config({
-  monaco
-});
-registerCompletion(monaco, 'sql');
+// import monaco from '../monaco';
+// import registerCompletion from './registerCompletion';
+// loader.config({
+//   monaco
+// });
+// registerCompletion(monaco, 'sql');
 const value = ref('');
 const editorRef = ref(null);
 const onMountEditor = value => {

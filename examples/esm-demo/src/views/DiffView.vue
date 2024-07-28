@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import monaco from '../monaco.ts';
-import { Diff, loader } from 'monaco-components';
-loader.config({
-  monaco
-});
+// import monaco from '../monaco.ts';
+// import { Diff, loader } from 'monaco-components';
+// loader.config({
+//   monaco
+// });
 
 const originalContent = `/*
   © Microsoft. All rights reserved.

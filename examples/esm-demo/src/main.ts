@@ -1,6 +1,8 @@
 import { createApp } from 'vue';
 import App from './App.vue';
 import router from './router';
+import monaco from './monaco.ts';
+import plugin from 'monaco-components';
 
 import './assets/main.css';
 
@@ -8,6 +10,10 @@ const app = createApp(App);
 
 app.use(router);
 
-// app.use(plugin)
+console.log(plugin)
+
+app.use(plugin, {
+  monaco
+});
 
 app.mount('#app');
