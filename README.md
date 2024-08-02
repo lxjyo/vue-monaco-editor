@@ -55,8 +55,9 @@ const originalContent = ref('');
 | height | string\|number| '500px' | 编辑器高度 |
 | readonly | boolean| false | 是否只读 |
 | placeholder| string | - | 编辑器占位符 |
-| options| editor.IStandaloneEditorConstructionOptions| - | [编辑器配置](https://microsoft.github.io/monaco-editor/typedoc/interfaces/editor.IStandaloneEditorConstructionOptions.html) 预设配置:
+| options| editor.IStandaloneEditorConstructionOptions| - | [编辑器配置](https://microsoft.github.io/monaco-editor/typedoc/interfaces/editor.IStandaloneEditorConstructionOptions.html)
 ```js
+// 预设options:
 {
   theme: 'light',
   foldingStrategy: 'auto', // 代码可分小段折叠
@@ -88,8 +89,9 @@ const originalContent = ref('');
 | height | string\|number| '500px' | 编辑器高度 |
 | showTitle | boolean | true | 是否显示标题 |
 | inline | boolean | false | // 是否使用inline模式对比 |
-| options| editor.IStandaloneDiffEditorConstructionOptions| - | [DiffEditor](https://microsoft.github.io/monaco-editor/typedoc/interfaces/editor.IDiffEditorConstructionOptions.html) 预设配置:
+| options| editor.IStandaloneDiffEditorConstructionOptions| - | [DiffEditor](https://microsoft.github.io/monaco-editor/typedoc/interfaces/editor.IDiffEditorConstructionOptions.html)
 ```js
+// 预设options:
 {
   readOnly: true, // 只读
   enableSplitViewResizing: true, // 允许调整大小
@@ -204,9 +206,8 @@ loader.config({ monaco })
 如果使用 `webpack`，[monaco-editor](https://microsoft.github.io/monaco-editor/) 官方提供了 `webpack` 的插件 [monaco-editor-webpack-plugin](https://www.npmjs.com/package/monaco-editor-webpack-plugin)，你可以安装并使用它。
 
 ## Inspiration
-
-MonacoVue 源自于以下项目:
+源自于以下项目:
 
 - [monaco-loader](https://github.com/suren-atoyan/monaco-loader)
 - [monaco-react](https://github.com/suren-atoyan/monaco-react/tree/master)
-- [monaco-vue](https://imguolao.github.io/monaco-vue)
+- [monaco-vue](https://github.com/imguolao/monaco-vue)
