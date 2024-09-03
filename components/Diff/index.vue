@@ -3,24 +3,55 @@ import { ref, shallowRef, toRefs, watch, onUnmounted, nextTick } from 'vue';
 import type { editor } from 'monaco-editor';
 import useMonaco from '../useMonaco';
 import type { MonacoEditor, Nullable } from '../types';
+import type { CSSProperties } from 'vue';
 defineOptions({
   name: 'Diff'
 });
 
+defineSlots<{
+  /** 标题插槽 */
+  default(props: {}): any;
+}>();
+
 interface IDiffProps {
+  /**
+   * 原始内容
+   */
   original: string;
+  /**
+   * 修改内容
+   */
   modified: string;
+  /**
+   * 编辑器语言
+   */
   language?: string;
-  height?: number | string;
-  // 是否显示标题
+  /**
+   * css 高度
+   */
+  height?: CSSProperties['height'];
+  /**
+   * 是否显示标题
+   */
   showTitle?: boolean;
-  // 是否使用inline模式对比
+  /**
+   * 初始时是否使用inline模式对比，可通过右键菜单切换
+   */
   inline?: boolean;
+  /**
+   * [对比编辑器配置](https://microsoft.github.io/monaco-editor/typedoc/interfaces/editor.IDiffEditorConstructionOptions.html)
+   */
   options?: editor.IStandaloneDiffEditorConstructionOptions;
 }
 
 interface IDiffEmits {
+  /**
+   * 内容修改事件，仅在options.readOnly 为false时生效
+   */
   (e: 'update:original', value: string): void;
+  /**
+   * 挂载事件
+   */
   (e: 'mount', diff: editor.IStandaloneDiffEditor, monaco: MonacoEditor): void;
 }
 
@@ -102,7 +133,7 @@ const setModel = (original: string, modified: string) => {
 };
 
 // 获取内容
-const getModelValue = (): string[] => {
+const getModelValue = (): readonly string[] => {
   const monacoDiffModel = diffInstance.value?.getModel();
   const original = monacoDiffModel?.original.getValue() || '';
   const modified = monacoDiffModel?.modified?.getValue() || '';

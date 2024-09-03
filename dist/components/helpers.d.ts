@@ -1,8 +1,6 @@
 import type { Plugin, Component, DefineComponent } from 'vue';
 export type SFCWithInstall<T> = T & Plugin;
-export declare const withInstall: <T extends Component | DefineComponent>(
-  component: T
-) => SFCWithInstall<T>;
+export declare const withInstall: <T extends Component<any, any, any, import("vue").ComputedOptions, import("vue").MethodOptions, {}, any> | DefineComponent<{}, {}, {}, import("vue").ComputedOptions, import("vue").MethodOptions, import("vue").ComponentOptionsMixin, import("vue").ComponentOptionsMixin, {}, string, import("vue").PublicProps, Readonly<import("vue").ExtractPropTypes<{}>>, {}, {}>>(component: T) => SFCWithInstall<T>;
 /**
  * 创建一个Vue插件，用于注册一组组件。
  * @param components 组件数组，每个组件应该是一个具有 `name` 属性的 Vue 组件。

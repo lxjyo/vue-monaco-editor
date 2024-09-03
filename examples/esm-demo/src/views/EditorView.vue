@@ -1,8 +1,8 @@
 <script setup lang="ts">
-// import { loader, Editor } from 'monaco-components';
 import { ref } from 'vue';
+// import { loader, Editor } from 'monaco-components';
 // import monaco from '../monaco';
-// import registerCompletion from './registerCompletion';
+// import registerCompletion from '../registerCompletion';
 // loader.config({
 //   monaco
 // });

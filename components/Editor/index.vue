@@ -3,18 +3,38 @@ import type { editor } from 'monaco-editor';
 import useMonaco from '../useMonaco';
 import { ref, toRefs, watch, shallowRef, onUnmounted, nextTick } from 'vue';
 import type { Nullable, MonacoEditor } from '../types';
+import type { CSSProperties } from 'vue';
 interface IEditorProps {
-  value: string;
+  /**
+   * 编辑器值(v-model:value)
+   */
+  value?: string;
+  /**
+   * 编辑器语言
+   */
   language?: string;
-  height?: number | string;
+  /**
+   * 编辑器高度
+   */
+  height?: CSSProperties['height'];
+  /**
+   * 是否只读
+   */
   readonly?: boolean;
+  /**
+   * 无文字内容时显示的占位文字
+   */
   placeholder?: string;
+  /** [编辑器配置](https://microsoft.github.io/monaco-editor/typedoc/interfaces/editor.IStandaloneEditorConstructionOptions.html)  */
   options?: editor.IStandaloneEditorConstructionOptions;
 }
 
 interface IEditorEmits {
   (e: 'update:value', value: string): void;
   (e: 'change', value: string): void;
+  /**
+   * 挂载
+   */
   (e: 'mount', editor: editor.IStandaloneCodeEditor, monaco: MonacoEditor): void;
 }
 
@@ -38,6 +58,7 @@ const defaultOptions: editor.IStandaloneEditorConstructionOptions = {
   }
 };
 const props = withDefaults(defineProps<IEditorProps>(), {
+  value: '',
   height: '500px',
   language: 'json',
   readonly: false,

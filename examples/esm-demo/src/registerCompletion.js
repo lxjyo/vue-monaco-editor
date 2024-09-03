@@ -1,24 +1,6 @@
 import { language as sql } from 'monaco-editor/esm/vs/basic-languages/sql/sql';
-import { language as javascript } from 'monaco-editor/esm/vs/basic-languages/javascript/javascript';
-import { language as mysql } from 'monaco-editor/esm/vs/basic-languages/mysql/mysql';
-import { language as sparql } from 'monaco-editor/esm/vs/basic-languages/sparql/sparql';
-import { language as java } from 'monaco-editor/esm/vs/basic-languages/java/java';
-import { language as python } from 'monaco-editor/esm/vs/basic-languages/python/python';
-import { language as go } from 'monaco-editor/esm/vs/basic-languages/go/go';
-import { language as yaml } from 'monaco-editor/esm/vs/basic-languages/yaml/yaml';
-import { language as shell } from 'monaco-editor/esm/vs/basic-languages/shell/shell';
-import { language as xml } from 'monaco-editor/esm/vs/basic-languages/xml/xml';
 const languageMap = {
-  javascript,
   sql,
-  mysql,
-  sparql,
-  python,
-  java,
-  go,
-  yaml,
-  shell,
-  xml
 };
 
 export default function registerCompletion(monaco, languageName) {

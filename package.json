@@ -6,7 +6,13 @@
     "dev": "pnpm -C examples/esm-demo dev",
     "build": "rollup -c rollup.config.mjs",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix",
+    "commit": "git cz",
     "release": "standard-version"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   },
   "lint-staged": {
     "components/**/*.{vue,js,jsx,cjs,mjs,ts,tsx,cts,mts}": [
@@ -33,6 +39,8 @@
     "@vue/eslint-config-prettier": "^7.0.0",
     "@vue/eslint-config-typescript": "^11.0.0",
     "@vue/tsconfig": "^0.1.3",
+    "commitizen": "^4.3.0",
+    "cz-conventional-changelog": "^3.3.0",
     "eslint": "^8.22.0",
     "eslint-plugin-vue": "^9.3.0",
     "husky": "^9.1.3",
@@ -46,7 +54,7 @@
     "rollup-plugin-typescript2": "^0.36.0",
     "rollup-plugin-vue": "^6.0.0",
     "standard-version": "^9.5.0",
-    "typescript": "^4.7.4"
+    "typescript": "^4.9.5"
   },
   "repository": {
     "url": "https://github.com/lxjyo/vue-monaco-editor.git"
