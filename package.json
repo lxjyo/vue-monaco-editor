@@ -1,6 +1,6 @@
 {
   "name": "vue-monaco-editor",
-  "version": "0.9.14",
+  "version": "0.9.15",
   "description": "monaco-editor vue3组件",
   "scripts": {
     "dev": "pnpm -C examples/esm-demo dev",

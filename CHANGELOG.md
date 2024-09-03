@@ -2,6 +2,8 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.9.15](https://github.com/lxjyo/vue-monaco-editor/compare/v0.9.14...v0.9.15) (2024-09-03)
+
 ### [0.9.14](https://github.com/lxjyo/vue-monaco-editor/compare/v0.9.13...v0.9.14) (2024-09-03)
 
 ### [0.9.13](https://github.com/lxjyo/vue-monaco-editor/compare/v0.9.12...v0.9.13) (2024-09-03)
