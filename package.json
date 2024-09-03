@@ -1,19 +1,24 @@
 {
   "name": "vue-monaco-editor",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "",
   "main": "index.js",
   "scripts": {
     "dev": "pnpm -C examples/esm-demo dev",
     "build": "rollup -c rollup.config.mjs",
-    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix"
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix",
+    "release": "standard-version"
   },
   "lint-staged": {
     "components/**/*.{vue,js,jsx,cjs,mjs,ts,tsx,cts,mts}": [
       "eslint --fix"
     ]
   },
-  "keywords": [],
+  "keywords": [
+    "monaco-editor",
+    "vue3",
+    "diff"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -41,6 +46,7 @@
     "rollup-plugin-postcss": "^4.0.2",
     "rollup-plugin-typescript2": "^0.36.0",
     "rollup-plugin-vue": "^6.0.0",
+    "standard-version": "^9.5.0",
     "typescript": "^4.7.4"
   }
 }
