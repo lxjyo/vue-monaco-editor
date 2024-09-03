@@ -1,6 +1,6 @@
 {
   "name": "vue-monaco-editor",
-  "version": "2.0.0",
+  "version": null,
   "description": "monaco-editor vue3组件",
   "scripts": {
     "prepare": "husky install",
@@ -10,7 +10,8 @@
     "commit": "git cz",
     "release": "HUSKY_SKIP_HOOKS=1 standard-version",
     "release-minor": "HUSKY_SKIP_HOOKS=1 standard-version -r minor",
-    "release-major": "HUSKY_SKIP_HOOKS=1 standard-version -r major"
+    "release-major": "HUSKY_SKIP_HOOKS=1 standard-version -r major",
+    "release-patch": "HUSKY_SKIP_HOOKS=1 standard-version -r patch"
   },
   "config": {
     "commitizen": {
