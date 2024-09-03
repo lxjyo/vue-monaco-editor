@@ -402,13 +402,11 @@
   var Diff = withInstall(script);
 
   const components = [Editor, Diff];
-  var index = createPlugin(components);
+  const Plugin = createPlugin(components);
 
   exports.loader = loader;
   exports.Diff = Diff;
   exports.Editor = Editor;
-  exports.default = index;
-
-  Object.defineProperty(exports, '__esModule', { value: true });
+  exports.Plugin = Plugin;
 
 }));

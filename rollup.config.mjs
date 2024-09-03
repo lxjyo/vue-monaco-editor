@@ -14,6 +14,10 @@ export default defineConfig({
       format: 'esm'
     },
     {
+      dir: 'dist/cjs',
+      format: 'cjs',
+    },
+    {
       dir: 'dist/umd',
       format: 'umd',
       name: 'vueMonaco',

@@ -1,6 +1,7 @@
-import loader from '@monaco-editor/loader';
-export { default as loader } from '@monaco-editor/loader';
-import { shallowRef, onMounted, defineComponent, toRefs, ref, watch, nextTick, onUnmounted, openBlock, createElementBlock, normalizeClass, withDirectives, createElementVNode, toDisplayString, vShow, normalizeStyle, renderSlot, createTextVNode, createCommentVNode } from 'vue';
+'use strict';
+
+var loader = require('@monaco-editor/loader');
+var vue = require('vue');
 
 const withInstall = (component) => {
     component.install = (app) => {
@@ -29,9 +30,9 @@ function createPlugin(components) {
 }
 
 function useMonaco() {
-    const monacoRef = shallowRef(loader.__getMonacoInstance());
+    const monacoRef = vue.shallowRef(loader.__getMonacoInstance());
     let cancelable;
-    onMounted(() => {
+    vue.onMounted(() => {
         if (!monacoRef.value) {
             cancelable = loader.init();
             cancelable
@@ -52,7 +53,7 @@ function useMonaco() {
     };
 }
 
-var script$1 = /*#__PURE__*/ defineComponent({
+var script$1 = /*#__PURE__*/ vue.defineComponent({
     ...{
         name: 'Editor'
     },
@@ -84,12 +85,12 @@ var script$1 = /*#__PURE__*/ defineComponent({
         };
         const props = __props;
         const { monacoRef, unload } = useMonaco();
-        const { value, language, readonly, options } = toRefs(props);
+        const { value, language, readonly, options } = vue.toRefs(props);
         const emits = __emit;
-        const editorRef = ref(null);
-        const editorInstance = shallowRef(null);
-        const fullscreen = ref(false);
-        const showPlaceholder = ref(!!props.placeholder && !props.value);
+        const editorRef = vue.ref(null);
+        const editorInstance = vue.shallowRef(null);
+        const fullscreen = vue.ref(false);
+        const showPlaceholder = vue.ref(!!props.placeholder && !props.value);
         // 添加全屏功能
         const addFullscreenAction = () => {
             editorInstance.value?.addAction({
@@ -149,25 +150,25 @@ var script$1 = /*#__PURE__*/ defineComponent({
             }
         };
         // 监听外部value的变化
-        watch(value, newValue => {
+        vue.watch(value, newValue => {
             if (newValue !== getValue()) {
                 setValue(newValue);
             }
         });
         // 监听外部language的变化
-        watch(language, setModelLanguage);
+        vue.watch(language, setModelLanguage);
         // 监听外部readonly的变化
-        watch(readonly, newValue => {
+        vue.watch(readonly, newValue => {
             editorInstance.value?.updateOptions({
                 readOnly: newValue
             });
         });
-        watch(monacoRef, () => {
-            nextTick(initEditorInstance);
+        vue.watch(monacoRef, () => {
+            vue.nextTick(initEditorInstance);
         }, {
             immediate: true
         });
-        onUnmounted(() => {
+        vue.onUnmounted(() => {
             if (editorInstance.value) {
                 editorInstance.value.dispose();
             }
@@ -176,16 +177,16 @@ var script$1 = /*#__PURE__*/ defineComponent({
             }
         });
         return (_ctx, _cache) => {
-            return (openBlock(), createElementBlock("div", {
-                class: normalizeClass(['editor-container', { fullscreen: fullscreen.value }])
+            return (vue.openBlock(), vue.createElementBlock("div", {
+                class: vue.normalizeClass(['editor-container', { fullscreen: fullscreen.value }])
             }, [
-                withDirectives(createElementVNode("div", { class: "placeholder" }, toDisplayString(_ctx.placeholder), 513 /* TEXT, NEED_PATCH */), [
-                    [vShow, showPlaceholder.value]
+                vue.withDirectives(vue.createElementVNode("div", { class: "placeholder" }, vue.toDisplayString(_ctx.placeholder), 513 /* TEXT, NEED_PATCH */), [
+                    [vue.vShow, showPlaceholder.value]
                 ]),
-                createElementVNode("div", {
+                vue.createElementVNode("div", {
                     ref_key: "editorRef",
                     ref: editorRef,
-                    style: normalizeStyle({ height: fullscreen.value ? '100%' : _ctx.height })
+                    style: vue.normalizeStyle({ height: fullscreen.value ? '100%' : _ctx.height })
                 }, null, 4 /* STYLE */)
             ], 2 /* CLASS */));
         };
@@ -231,7 +232,7 @@ const _hoisted_1 = {
     key: 0,
     class: "diff-title-container"
 };
-var script = /*#__PURE__*/ defineComponent({
+var script = /*#__PURE__*/ vue.defineComponent({
     ...{
         name: 'Diff'
     },
@@ -256,11 +257,11 @@ var script = /*#__PURE__*/ defineComponent({
         };
         const props = __props;
         const emits = __emit;
-        const { options, original, modified, language } = toRefs(props);
-        const diffRef = ref();
-        const diffInstance = shallowRef();
-        const inlineMode = ref(props.inline);
-        const fullscreen = ref(false);
+        const { options, original, modified, language } = vue.toRefs(props);
+        const diffRef = vue.ref();
+        const diffInstance = vue.shallowRef();
+        const inlineMode = vue.ref(props.inline);
+        const fullscreen = vue.ref(false);
         const { monacoRef, unload } = useMonaco();
         // 全屏切换
         const addFullscreenAction = () => {
@@ -351,18 +352,18 @@ var script = /*#__PURE__*/ defineComponent({
             }
         };
         // 监听内容的变化
-        watch([original, modified], ([newOriginal, newModified]) => {
+        vue.watch([original, modified], ([newOriginal, newModified]) => {
             const [originalValue, modifiedValue] = getModelValue();
             if (originalValue !== newOriginal || modifiedValue !== newModified) {
                 setModel(newOriginal, newModified);
             }
         });
-        watch(monacoRef, () => {
-            nextTick(initDiffInstance);
+        vue.watch(monacoRef, () => {
+            vue.nextTick(initDiffInstance);
         }, {
             immediate: true
         });
-        onUnmounted(() => {
+        vue.onUnmounted(() => {
             if (diffInstance.value) {
                 diffInstance.value.dispose();
             }
@@ -371,20 +372,20 @@ var script = /*#__PURE__*/ defineComponent({
             }
         });
         return (_ctx, _cache) => {
-            return (openBlock(), createElementBlock("div", {
-                class: normalizeClass(['diff-container', fullscreen.value ? 'fullscreen' : ''])
+            return (vue.openBlock(), vue.createElementBlock("div", {
+                class: vue.normalizeClass(['diff-container', fullscreen.value ? 'fullscreen' : ''])
             }, [
                 (_ctx.showTitle)
-                    ? (openBlock(), createElementBlock("div", _hoisted_1, [
-                        renderSlot(_ctx.$slots, "default", {}, () => [
-                            createTextVNode("original >> modified ")
+                    ? (vue.openBlock(), vue.createElementBlock("div", _hoisted_1, [
+                        vue.renderSlot(_ctx.$slots, "default", {}, () => [
+                            vue.createTextVNode("original >> modified ")
                         ])
                     ]))
-                    : createCommentVNode("v-if", true),
-                createElementVNode("div", {
+                    : vue.createCommentVNode("v-if", true),
+                vue.createElementVNode("div", {
                     ref_key: "diffRef",
                     ref: diffRef,
-                    style: normalizeStyle({ height: fullscreen.value ? '100%' : _ctx.height })
+                    style: vue.normalizeStyle({ height: fullscreen.value ? '100%' : _ctx.height })
                 }, null, 4 /* STYLE */)
             ], 2 /* CLASS */));
         };
@@ -402,4 +403,7 @@ var Diff = withInstall(script);
 const components = [Editor, Diff];
 const Plugin = createPlugin(components);
 
-export { Diff, Editor, Plugin };
+exports.loader = loader;
+exports.Diff = Diff;
+exports.Editor = Editor;
+exports.Plugin = Plugin;

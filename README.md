@@ -9,10 +9,10 @@ npm install vue-monaco-editor --save
 ## Usage
 ```ts
 import { createApp } from 'vue';
-import plugin from 'vue-monaco-editor';
+import { Plugin } from 'vue-monaco-editor';
 const app = createApp(App);
 
-app.use(plugin, {
+app.use(Plugin, {
   paths: {
     // CDN 配置
     vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.50.0/min/vs'

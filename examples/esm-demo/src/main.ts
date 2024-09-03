@@ -2,7 +2,7 @@ import { createApp } from 'vue';
 import App from './App.vue';
 import router from './router';
 import monaco from './monaco.ts';
-import plugin from 'monaco-components';
+import { Plugin } from 'monaco-components';
 import registerCompletion from './registerCompletion.js';
 registerCompletion(monaco, 'sql');
 
@@ -12,9 +12,7 @@ const app = createApp(App);
 
 app.use(router);
 
-console.log(plugin)
-
-app.use(plugin, {
+app.use(Plugin, {
   monaco
 });
 

@@ -2,16 +2,19 @@
   "name": "vue-monaco-editor",
   "version": "1.0.0",
   "description": "monaco-editor vue3组件",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./dist/components",
   "scripts": {
     "prepare": "husky install",
     "dev": "pnpm -C examples/esm-demo dev",
     "build": "rollup -c rollup.config.mjs",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix",
     "commit": "git cz",
-    "release": "HUSKY_SKIP_HOOKS=1 standard-version",
-    "release-minor": "HUSKY_SKIP_HOOKS=1 standard-version -r minor",
-    "release-major": "HUSKY_SKIP_HOOKS=1 standard-version -r major",
-    "release-patch": "HUSKY_SKIP_HOOKS=1 standard-version -r patch"
+    "release": "cross-env HUSKY_SKIP_HOOKS=1 standard-version",
+    "release-minor": "cross-env HUSKY_SKIP_HOOKS=1 standard-version -r minor",
+    "release-major": "cross-env HUSKY_SKIP_HOOKS=1 standard-version -r major",
+    "release-patch": "cross-env HUSKY_SKIP_HOOKS=1 standard-version -r patch"
   },
   "config": {
     "commitizen": {
@@ -44,6 +47,7 @@
     "@vue/eslint-config-typescript": "^11.0.0",
     "@vue/tsconfig": "^0.1.3",
     "commitizen": "^4.3.0",
+    "cross-env": "^7.0.3",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^8.22.0",
     "eslint-plugin-vue": "^9.3.0",
