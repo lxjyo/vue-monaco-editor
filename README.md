@@ -52,7 +52,7 @@ const originalContent = ref('');
 | --- | --- | --- | --- |
 | value(v-model:value) | string | - | 编辑器内容 |
 | language | string | 'json' | 编辑器语言 |
-| height | string\|number| '500px' | 编辑器高度 |
+| height | CSSProperties['height']| '500px' | 编辑器高度 |
 | readonly | boolean| false | 是否只读 |
 | placeholder| string | - | 编辑器占位符 |
 | options| editor.IStandaloneEditorConstructionOptions| - | [编辑器配置](https://microsoft.github.io/monaco-editor/typedoc/interfaces/editor.IStandaloneEditorConstructionOptions.html)
@@ -86,7 +86,7 @@ const originalContent = ref('');
 | original(v-model:original) | string | - | 原始内容 |
 | modified | string | - | 修改内容 |
 | language | string | 'json' | 编辑器语言 |
-| height | string\|number| '500px' | 编辑器高度 |
+| height | CSSProperties['height']| '500px' | 编辑器高度 |
 | showTitle | boolean | true | 是否显示标题 |
 | inline | boolean | false | // 是否使用inline模式对比 |
 | options| editor.IStandaloneDiffEditorConstructionOptions| - | [DiffEditor](https://microsoft.github.io/monaco-editor/typedoc/interfaces/editor.IDiffEditorConstructionOptions.html)
