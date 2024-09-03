@@ -1,8 +1,7 @@
 {
   "name": "vue-monaco-editor",
-  "version": "1.0.1",
-  "description": "",
-  "main": "index.js",
+  "version": "0.9.1",
+  "description": "monaco-editor vue3组件",
   "scripts": {
     "dev": "pnpm -C examples/esm-demo dev",
     "build": "rollup -c rollup.config.mjs",
@@ -19,7 +18,7 @@
     "vue3",
     "diff"
   ],
-  "author": "",
+  "author": "lxjyo",
   "license": "ISC",
   "dependencies": {
     "monaco-components": "workspace:^",
@@ -48,5 +47,8 @@
     "rollup-plugin-vue": "^6.0.0",
     "standard-version": "^9.5.0",
     "typescript": "^4.7.4"
+  },
+  "repository": {
+    "url": "https://github.com/lxjyo/vue-monaco-editor.git"
   }
 }
