@@ -1,2 +1,2 @@
 #!/usr/bin/env sh
-npx cz --hook
+exec < /dev/tty && npx cz --hook || true
