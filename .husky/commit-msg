@@ -1,2 +1,2 @@
 #!/usr/bin/env sh
-npx cz --hook || true
+npx cz --hook
