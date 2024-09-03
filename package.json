@@ -1,13 +1,13 @@
 {
   "name": "vue-monaco-editor",
-  "version": "0.9.11",
+  "version": "0.9.12",
   "description": "monaco-editor vue3组件",
   "scripts": {
     "dev": "pnpm -C examples/esm-demo dev",
     "build": "rollup -c rollup.config.mjs",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix",
     "commit": "git cz",
-    "release": "standard-version"
+    "release": "HUSKY_SKIP_HOOKS=1 standard-version"
   },
   "config": {
     "commitizen": {
