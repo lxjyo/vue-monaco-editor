@@ -1,6 +1,6 @@
 {
   "name": "vue-monaco-editor",
-  "version": null,
+  "version": "1.0.0",
   "description": "monaco-editor vue3组件",
   "scripts": {
     "prepare": "husky install",
